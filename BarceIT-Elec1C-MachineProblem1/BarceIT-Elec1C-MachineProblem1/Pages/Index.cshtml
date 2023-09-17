@@ -1,0 +1,124 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+@{
+    DateTime bDate = Convert.ToDateTime("03/09/2003");
+    DateTime tDate = DateTime.Today;
+    int age = tDate.Year - bDate.Year;
+
+    if (bDate > tDate.AddYears(-age))
+    {
+        age--;
+    }
+    var FirstName = "Karl";
+    var LastName = "Barce";
+    var Email = "karlmanuel.barce.cics@ust.edu.ph";
+    string[] email = Email.Split('@');
+    bool isTenured = true;
+    int SalaryPerHour = 5;
+    int SalaryPerDay = 0;
+    int SalaryPerMonth = 0;
+    var Status = "";
+    int Prelim = 92;
+    int Final = 90;
+    int Semestral = (Prelim + Final) / 2;
+    var Transmuted = "";
+    if(96 <= Semestral && Semestral <= 100)
+    {
+        Transmuted = "1.00";
+    }
+    else if (94 <= Semestral && Semestral <= 95)
+    {
+        Transmuted = "1.25";
+    }
+    else if (92 <= Semestral && Semestral <= 93)
+    {
+        Transmuted = "1.50";
+    }
+    else if (89 <= Semestral && Semestral <= 91)
+    {
+        Transmuted = "1.75";
+    }
+    else if (87 <= Semestral && Semestral <= 88)
+    {
+        Transmuted = "2.00";
+    }
+    else if (84 <= Semestral && Semestral <= 86)
+    {
+        Transmuted = "2.25";
+    }
+    else if (82 <= Semestral && Semestral <= 83)
+    {
+        Transmuted = "2.50";
+    }
+    else if (79 <= Semestral && Semestral <= 81)
+    {
+        Transmuted = "2.75";
+    }
+    else if (75 <= Semestral && Semestral <= 78)
+    {
+        Transmuted = "3.0";
+    }
+    else if (Semestral < 75)
+    {
+        Transmuted = "5.0";
+    }
+
+    if (isTenured) 
+    {
+        Status = "permanent";
+        SalaryPerDay = SalaryPerHour * 8;
+        SalaryPerMonth = (SalaryPerDay * 30) + 500;
+    }
+    else
+    {
+        Status = "Probationary";
+        SalaryPerDay = SalaryPerHour * 8;
+        SalaryPerMonth = SalaryPerDay * 30;
+    }
+
+}
+
+    <div class="box">
+            <label>Output A.</label><br />
+            <label>I'm @FirstName @LastName and I'm @age yrs old</label><br /><br />
+
+            <label>Output B.</label><br />
+            <label>Email: @Email</label><br />
+            <label>Domain: @email[1]</label><br />
+            <label>Username: @email[0]</label><br /><br />
+
+            <label>Output C.</label><br />
+            <label>Name: @FirstName @LastName</label><br />
+            <label>Email: @Email</label><br />
+            <label>Status: @Status</label><br />
+            <label>Daily Salary: $@SalaryPerDay</label><br />
+            <label>Monthly Salary: $@SalaryPerMonth</label><br /><br />
+
+            <label>Output D.</label><br />
+            <table class="table table-bordered">
+                <tr>
+                    <td>Name:</td>
+                    <td>@FirstName @LastName</td>
+                </tr>
+                <tr>
+                    <td>Prelim:</td>
+                    <td>@Prelim</td>
+                 </tr>
+                 <tr>
+                    <td>Final:</td>
+                    <td>@Final</td>
+                 </tr>
+                 <tr>
+                    <td>Semestral Grade:</td>
+                    <td>@Semestral</td>
+                 </tr>
+                 <tr>
+                    <td>Transmuted Grade:</td>
+                    <td>@Transmuted</td>
+                 </tr>
+            </table>    
+</div>
+  

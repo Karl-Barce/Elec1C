@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\BarceIT-Elec1C-Machineproblem1.props" />
+</Project>

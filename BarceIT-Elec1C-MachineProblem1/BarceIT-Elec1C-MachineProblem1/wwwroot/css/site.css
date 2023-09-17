@@ -1,0 +1,26 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.box {
+    max-width: 100%;
+    background-color: lightgray;
+    padding: 50px;
+    border-radius: 20px;
+    margin: 200px 450px;
+}
