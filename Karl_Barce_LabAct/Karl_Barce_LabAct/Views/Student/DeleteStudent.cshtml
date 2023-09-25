@@ -1,0 +1,40 @@
+﻿@model Student
+@{
+}
+
+<form asp-action="DeleteStudent">
+    <div>
+        <label class="mt3">Id</label>
+        <input asp-for="Id" class="form-control" disabled/>
+    </div>
+    <div>
+        <label class="mt3">First Name</label>
+        <input asp-for="Firstname" class="form-control" disabled/>
+    </div>
+    <div>
+        <label class="mt3">Last Name</label>
+        <input asp-for="Lastname" class="form-control" disabled/>
+    </div>
+
+    <div>
+        <label class="mt3">GPA</label>
+        <input asp-for="GPA" class="form-control" disabled/>
+    </div>
+    <div>
+        <label class="mt3">Course</label>
+        <select asp-for="Course" asp-items="Html.GetEnumSelectList<Course>()" aria-label="Course" class="form-control" disabled></select>
+    </div>
+    <div>
+        <label class="mt3">AdmissionDate</label>
+        <input asp-for="AdmissionDate" class="form-control" disabled/>
+    </div>
+    <div>
+        <label class="mt3">Email</label>
+        <input asp-for="Email" class="form-control" disabled/>
+    </div>
+    <button type="submit" class="btn btn-primary">Delete</button>
+    <button type="button" onclick="history.back()" class="btn btn-primary">Cancel</button>
+    
+
+
+</form>

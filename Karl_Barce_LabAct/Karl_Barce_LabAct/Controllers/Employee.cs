@@ -1,38 +1,99 @@
 ﻿using Karl_Barce_LabAct.Models;
+using Karl_Barce_LabAct.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Karl_Barce_LabAct.Controllers
 {
     public class Employee : Controller
     {
-        List<Instructor> InstructorList = new List<Instructor>
-            {
-                new Instructor()
-                {
-                    Id= 1,FirstName = "Jason",LastName = "Beltran", Rank = Rank.instructor, HiringDate = DateTime.Parse("2022-08-26"), isTenured = true
-                },
-                new Instructor()
-                {
-                    Id= 2,FirstName = "Mikhail",LastName = "De Guzman", Rank = Rank.AssistantProfessor, HiringDate = DateTime.Parse("2022-08-07"), isTenured = false
-                },
-                new Instructor()
-                {
-                    Id= 3,FirstName = "Manuel",LastName = "Barce", Rank = Rank.Professor, HiringDate = DateTime.Parse("2020-01-25"), isTenured = true
-                }
-            };
+        private readonly IMyFakeDataService _fakeDataService;
+
+        public Employee(IMyFakeDataService fakeDataService)
+        {
+            _fakeDataService = fakeDataService;
+        }
+
         public IActionResult Index()
         {
-            return View(InstructorList);
+            return View(_fakeDataService.InstructorList);
         }
         public IActionResult ShowDetail(int id)
         {
             //Search for the student whose id matches the given id
-            Instructor? instructor = InstructorList.FirstOrDefault(st => st.Id == id);
+            Instructor? instructor = _fakeDataService.InstructorList.FirstOrDefault(st => st.Id == id);
 
             if (instructor != null)//was an student found?
                 return View(instructor);
 
             return NotFound();
         }
+        [HttpGet]
+        public IActionResult AddInstructor()
+        {
+
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AddInstructor(Instructor newInstructor)
+        {
+            _fakeDataService.InstructorList.Add(newInstructor);
+            return RedirectToAction("Index");
+
+        }
+        [HttpGet]
+        public IActionResult EditInstructor(int id)
+        {
+
+            Instructor? instructor = _fakeDataService.InstructorList.FirstOrDefault(st => st.Id == id);
+
+            if (instructor != null)
+                return View(instructor);
+
+            return NotFound();
+        }
+        [HttpPost]
+        public IActionResult EditInstructor(Instructor instructor)
+        {
+            var st = _fakeDataService.InstructorList.FirstOrDefault(st => st.Id == instructor.Id);
+
+            if (st != null)
+            {
+                st.Id = instructor.Id;
+                st.FirstName = instructor.FirstName;
+                st.LastName = instructor.LastName;
+                st.isTenured = instructor.isTenured;
+                st.Rank = instructor.Rank;
+                st.HiringDate = instructor.HiringDate;
+                return RedirectToAction("Index");
+            }
+            return NotFound();
+        }
+        [HttpGet]
+        public IActionResult DeleteInstructor(int id)
+        {
+
+
+            Instructor? instructor = _fakeDataService.InstructorList.FirstOrDefault(st => st.Id == id);
+
+            if (instructor != null)
+                return View(instructor);
+
+            return NotFound();
+        }
+        [HttpPost]
+        public IActionResult DeleteInstructor(Instructor instructor)
+        {
+
+            var st = _fakeDataService.InstructorList.FirstOrDefault(st => st.Id == instructor.Id);
+
+            if (st != null)
+            {
+              
+                _fakeDataService.InstructorList.Remove(st);
+                return RedirectToAction("Index");
+            }
+            return NotFound();
+        }
+
     }
 }

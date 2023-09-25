@@ -2,22 +2,22 @@
 @{
 }
 
-<form asp-action="AddInstructor">
+<form asp-action="DeleteInstructor">
     <div>
         <label class="mt-3">Id</label>
-        <input asp-for="Id" class="form-control" />
+        <input asp-for="Id" class="form-control" disabled/>
     </div>
     <div>
         <label class="mt-3">First Name</label>
-        <input asp-for="FirstName" class="form-control" />
+        <input asp-for="FirstName" class="form-control" disabled/>
     </div>
     <div>
         <label class="mt-3">Last Name</label>
-        <input asp-for="LastName" class="form-control" />
+        <input asp-for="LastName" class="form-control" disabled/>
     </div>
     <div>
         <label class="mt-3">isTenured</label>
-        <input type="checkbox" asp-for="isTenured" class="form-check" />
+        <input type="checkbox" asp-for="isTenured" class="form-check" disabled/>
     </div>
     <div>
         <label class="mt-3">Position</label>
@@ -25,9 +25,10 @@
     </div>
     <div>
         <label class="mt-3">Hiring Date</label>
-        <input asp-for="HiringDate" class="form-control" />
+        <input asp-for="HiringDate" class="form-control" disabled/>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary" >Delete</button>
+    <button type="button" onclick="history.back()" class="btn btn-primary">Cancel</button>
 
 
 </form>
