@@ -1,4 +1,5 @@
-﻿using Karl_Barce_LabAct.Models;
+﻿using Karl_Barce_LabAct.Data;
+using Karl_Barce_LabAct.Models;
 using Karl_Barce_LabAct.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,21 +7,21 @@ namespace Karl_Barce_LabAct.Controllers
 {
     public class Employee : Controller
     {
-        private readonly IMyFakeDataService _fakeDataService;
+        private readonly AppDbContext _dbContext;
 
-        public Employee(IMyFakeDataService fakeDataService)
+        public Employee(AppDbContext dbContext)
         {
-            _fakeDataService = fakeDataService;
+            _dbContext = dbContext;
         }
 
         public IActionResult Index()
         {
-            return View(_fakeDataService.InstructorList);
+            return View(_dbContext.Instructors);
         }
         public IActionResult ShowDetail(int id)
         {
             //Search for the student whose id matches the given id
-            Instructor? instructor = _fakeDataService.InstructorList.FirstOrDefault(st => st.Id == id);
+            Instructor? instructor = _dbContext.Instructors.FirstOrDefault(st => st.Id == id);
 
             if (instructor != null)//was an student found?
                 return View(instructor);
@@ -36,7 +37,8 @@ namespace Karl_Barce_LabAct.Controllers
         [HttpPost]
         public IActionResult AddInstructor(Instructor newInstructor)
         {
-            _fakeDataService.InstructorList.Add(newInstructor);
+            _dbContext.Instructors.Add(newInstructor);
+            _dbContext.SaveChanges();
             return RedirectToAction("Index");
 
         }
@@ -44,7 +46,7 @@ namespace Karl_Barce_LabAct.Controllers
         public IActionResult EditInstructor(int id)
         {
 
-            Instructor? instructor = _fakeDataService.InstructorList.FirstOrDefault(st => st.Id == id);
+            Instructor? instructor = _dbContext.Instructors.FirstOrDefault(st => st.Id == id);
 
             if (instructor != null)
                 return View(instructor);
@@ -54,7 +56,7 @@ namespace Karl_Barce_LabAct.Controllers
         [HttpPost]
         public IActionResult EditInstructor(Instructor instructor)
         {
-            var st = _fakeDataService.InstructorList.FirstOrDefault(st => st.Id == instructor.Id);
+            var st = _dbContext.Instructors.FirstOrDefault(st => st.Id == instructor.Id);
 
             if (st != null)
             {
@@ -64,6 +66,7 @@ namespace Karl_Barce_LabAct.Controllers
                 st.isTenured = instructor.isTenured;
                 st.Rank = instructor.Rank;
                 st.HiringDate = instructor.HiringDate;
+                _dbContext.SaveChanges();
                 return RedirectToAction("Index");
             }
             return NotFound();
@@ -73,7 +76,7 @@ namespace Karl_Barce_LabAct.Controllers
         {
 
 
-            Instructor? instructor = _fakeDataService.InstructorList.FirstOrDefault(st => st.Id == id);
+            Instructor? instructor = _dbContext.Instructors.FirstOrDefault(st => st.Id == id);
 
             if (instructor != null)
                 return View(instructor);
@@ -84,12 +87,13 @@ namespace Karl_Barce_LabAct.Controllers
         public IActionResult DeleteInstructor(Instructor instructor)
         {
 
-            var st = _fakeDataService.InstructorList.FirstOrDefault(st => st.Id == instructor.Id);
+            var st = _dbContext.Instructors.FirstOrDefault(st => st.Id == instructor.Id);
 
             if (st != null)
             {
               
-                _fakeDataService.InstructorList.Remove(st);
+                _dbContext.Instructors.Remove(st);
+                _dbContext.SaveChanges();
                 return RedirectToAction("Index");
             }
             return NotFound();
