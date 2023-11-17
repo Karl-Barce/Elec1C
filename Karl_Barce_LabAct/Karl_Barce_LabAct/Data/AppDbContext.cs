@@ -1,9 +1,10 @@
 ﻿using Karl_Barce_LabAct.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Karl_Barce_LabAct.Data
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<User>
     {
         public DbSet<Student> Students { get; set; }
         public DbSet<Instructor> Instructors { get; set; }

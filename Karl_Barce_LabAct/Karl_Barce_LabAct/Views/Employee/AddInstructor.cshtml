@@ -3,6 +3,7 @@
 }
 
 <form asp-action="AddInstructor">
+    <div asp-validation-summary="All"></div>
     <div>
         <label class="mt-3">First Name</label>
         <input asp-for="FirstName" class="form-control" />

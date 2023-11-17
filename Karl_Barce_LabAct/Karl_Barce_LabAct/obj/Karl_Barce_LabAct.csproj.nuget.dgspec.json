@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\barce\\source\\repos\\Karl_Barce_LabAct\\Karl_Barce_LabAct\\Karl_Barce_LabAct.csproj": {}
+    "C:\\Users\\barce\\Documents\\GitHub\\Elec1C\\Karl_Barce_LabAct\\Karl_Barce_LabAct\\Karl_Barce_LabAct.csproj": {}
   },
   "projects": {
-    "C:\\Users\\barce\\source\\repos\\Karl_Barce_LabAct\\Karl_Barce_LabAct\\Karl_Barce_LabAct.csproj": {
+    "C:\\Users\\barce\\Documents\\GitHub\\Elec1C\\Karl_Barce_LabAct\\Karl_Barce_LabAct\\Karl_Barce_LabAct.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\barce\\source\\repos\\Karl_Barce_LabAct\\Karl_Barce_LabAct\\Karl_Barce_LabAct.csproj",
+        "projectUniqueName": "C:\\Users\\barce\\Documents\\GitHub\\Elec1C\\Karl_Barce_LabAct\\Karl_Barce_LabAct\\Karl_Barce_LabAct.csproj",
         "projectName": "Karl_Barce_LabAct",
-        "projectPath": "C:\\Users\\barce\\source\\repos\\Karl_Barce_LabAct\\Karl_Barce_LabAct\\Karl_Barce_LabAct.csproj",
+        "projectPath": "C:\\Users\\barce\\Documents\\GitHub\\Elec1C\\Karl_Barce_LabAct\\Karl_Barce_LabAct\\Karl_Barce_LabAct.csproj",
         "packagesPath": "C:\\Users\\barce\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\barce\\source\\repos\\Karl_Barce_LabAct\\Karl_Barce_LabAct\\obj\\",
+        "outputPath": "C:\\Users\\barce\\Documents\\GitHub\\Elec1C\\Karl_Barce_LabAct\\Karl_Barce_LabAct\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -45,15 +45,27 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.24, )"
+            },
+            "Microsoft.AspNetCore.Identity.UI": {
+              "target": "Package",
+              "version": "[6.0.24, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.12, )"
+              "version": "[7.0.13, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[7.0.12, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[7.0.13, )"
             }
           },
           "imports": [

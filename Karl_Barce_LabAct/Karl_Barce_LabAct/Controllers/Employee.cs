@@ -37,6 +37,10 @@ namespace Karl_Barce_LabAct.Controllers
         [HttpPost]
         public IActionResult AddInstructor(Instructor newInstructor)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             _dbContext.Instructors.Add(newInstructor);
             _dbContext.SaveChanges();
             return RedirectToAction("Index");

@@ -1,4 +1,6 @@
+
 namespace Karl_Barce_LabAct.Models
+
 {
     public class ErrorViewModel
     {
